@@ -9,7 +9,13 @@ public abstract class Curve : ICurve {
 
 	protected bool Invalid { get; private set; }
 
-	public float Length { get; private set; }
+	private float _length;
+
+	public float Length { get {
+			Validate();
+			return _length;
+		}
+	}
 
 	protected void Invalidate() {
 		Invalid = true;
@@ -23,7 +29,7 @@ public abstract class Curve : ICurve {
 	}
 
 	protected virtual void Update() {
-		Length = LengthImpl;
+		_length = LengthImpl;
 	}
 
 	public Vector3 GetPosition(float u) {
