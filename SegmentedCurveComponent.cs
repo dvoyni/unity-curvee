@@ -38,15 +38,15 @@ public abstract class SegmentedCurveComponent : CurveComponent, ISegmentedCurve 
 	}
 
 	private void UpdateAnchors(SegmentedCurve curve) {
-		var i = 0;
-		foreach(var anchorPoint in anchorPoints) {
+		
+        for(var i = 0; i < anchorPoints.Count; i++) {
+            var anchorPoint = anchorPoints[i];
 			if (anchorPoint != null) {
 				if (anchorPoint.position != curve.GetPoint(i)) {
 					curve.SetPoint(i, transform.worldToLocalMatrix.MultiplyPoint(
 						anchorPoint.position));
 				}
 			}
-			i++;
 		}
 	}
 
